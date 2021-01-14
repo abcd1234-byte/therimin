@@ -250,8 +250,9 @@ var Key = {
 };
 window.addEventListener('keyup', function(event) { Key.onKeyup(event); }, false);
 window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false);
-	//JSGHT 2D Collision Component
-function detectRectCollision(rect1,rect2){
+//JSGHT 2D Collision Component
+collisHelper={};
+collisHelper.detectRectCollision= function(rect1,rect2){
 if (rect1.x < rect2.x + rect2.width &&
 rect1.x + rect1.width > rect2.x &&
 rect1.y < rect2.y + rect2.height &&
@@ -261,7 +262,7 @@ return true;
 return false;
 };
 };
-function detectCircleCollision(circle1,circle2){
+collisHelper.detectCircleCollision=function(circle1,circle2){
 var dx = circle1.x - circle2.x;
 var dy = circle1.y - circle2.y;
 var distance = Math.sqrt(dx * dx + dy * dy);
@@ -271,7 +272,7 @@ return true;
 return false;
 };
 };
-function detectRectCircleCollision(circle,rect){
+collisHelper.detectRectCircleCollision=function(circle,rect){
 var distX = Math.abs(circle.x - rect.x-rect.width/2);
 var distY = Math.abs(circle.y - rect.y-rect.height/2);
 if (distX > (rect.width/2 + circle.radius)) { return false; }
